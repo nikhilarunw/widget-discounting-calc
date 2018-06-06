@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Calculator</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
+    <link rel="stylesheet" href="style.css" />
+    <script data-require="jquery" data-semver="3.3.1" src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div id="invoice-calculator-widget">
+      <div class="row">
+        <div class="col-xs-12 payment_term_control">
+          <label>Payment Term(In Days)</label>
+          <div>
+            <input id="payment_term_30" name="payment_term" type="radio" value="30" checked/>
+            <label class="payment_term_checkbox" for="payment_term_30">30<span class="days">Days</span></label>
+            
+            <input id="payment_term_45" name="payment_term" type="radio" value="45"/>
+            <label class="payment_term_checkbox" for="payment_term_45">45<span class="days">Days</span></label>
+            
+            <input id="payment_term_60" name="payment_term" type="radio" value="60"/>
+            <label class="payment_term_checkbox" for="payment_term_60">60<span class="days">Days</span></label>
+            
+            <input id="payment_term_90" name="payment_term" type="radio" value="90"/>
+            <label class="payment_term_checkbox" for="payment_term_90">90<span class="days">Days</span></label
+          </div>
+          <div class="error"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 invoice_amount_unit_control">
+          <label>Amount in</label>
+          <div>
+            <input id="invoice_amount_unit_lacs" name="invoice_amount_unit" type="radio" value="lacs" checked/>
+            <label class="invoice_amount_unit_checkbox" for="invoice_amount_unit_lacs" >Lacs</label>
+          
+            <input id="invoice_amount_unit_crores" name="invoice_amount_unit" type="radio" value="crores"/>
+            <label class="invoice_amount_unit_checkbox" for="invoice_amount_unit_crores">Crores</label>
+          </div>
+          <div class="error"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 invoice_amount_control">
+          <label>Amount</label>
+          <div><input class="amount" name="invoice_amount" type="text" value="3"/></div>
+          <div class="error"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 fees_amount_control">
+          <label>Fees</label>
+          <div name="fees_amount"></div>
+          <div class="error"></div>
+        </div>
+        <div class="col-xs-6 cash_amount_control">
+          <label>Cash We Advance</label>
+          <div name="cash_amount"></div>
+          <div class="error"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

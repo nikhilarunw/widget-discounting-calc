@@ -1,0 +1,101 @@
+#invoice-calculator-widget{
+  font-family: 'Roboto', sans-serif;
+  width: 450px;
+  background-color: #1B2333;
+  color: #F3F9FA;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+#invoice-calculator-widget .row{
+  margin: 16px 16px;
+}
+
+#invoice-calculator-widget .error{
+  margin: 8px 0px; 
+  font-size: 0.8em;
+}
+
+#invoice-calculator-widget .error.has-error{
+  color: red;
+}
+#invoice-calculator-widget span.days{
+  font-size: 0.8em;
+  margin-left: 4px;
+}
+#invoice-calculator-widget label{
+  display: inline-block;
+  font-size: 0.8em;
+  line-height: 1em;
+  margin-bottom: 8px;
+}
+#invoice-calculator-widget .amount{
+  margin: 4px 0px;
+  padding: 4px 4px;
+  height: 1em;
+  font-size: 1.2em;
+  line-height: 1em;
+  border: none;
+  color: #F3F9FA;
+  background-color: transparent;
+  border-bottom: 1px solid #F3F9FA;
+}
+#invoice-calculator-widget .amount:focus { outline: none; }
+
+#invoice-calculator-widget [name='fees_amount'],
+#invoice-calculator-widget [name='cash_amount']{
+  margin: 4px 0px;
+  font-size: 1.2em;
+  line-height: 1em;
+  color: ;
+  color: #F3F9FA;
+  background-color: transparent;
+}
+
+#invoice-calculator-widget [name='payment_term']{
+  display: none;
+}
+
+#invoice-calculator-widget .payment_term_control .payment_term_checkbox{
+  font-size: 1.2em;
+  margin: 0px 4px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+#invoice-calculator-widget .payment_term_control .payment_term_checkbox:hover{
+  border: 2px solid orange;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+}
+#invoice-calculator-widget .payment_term_control input:checked + .payment_term_checkbox{
+  border: 2px solid orange;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+}
+
+
+#invoice-calculator-widget [name='invoice_amount_unit']{
+  display: none;
+}
+
+#invoice-calculator-widget .invoice_amount_unit_control .invoice_amount_unit_checkbox{
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 4px;
+}
+
+#invoice-calculator-widget .invoice_amount_unit_control .invoice_amount_unit_checkbox:hover{
+  border: 2px solid orange;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+}
+#invoice-calculator-widget .invoice_amount_unit_control input:checked + .invoice_amount_unit_checkbox{
+  border: 2px solid orange;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+}
