@@ -29,20 +29,17 @@ $(function(){
   invoice_amount_unit.on('change',render);
 
 
-  widget.find('.amount').on('keydown', function(event){
+  widget.find('.amount').on('keyup keypress blur change', function(event){
     var value = event.target.value;
-    value.replace(",")
-    if(value){
-      //value = formatINR(value);
-      event.target.value = value;
-    }
+    var original_value = currencyParser(value);
+    var formatted_value = currencyFormatter(original_value)
+    event.target.value = formatted_value;
   })
 
   
   render();
 
   function update(){
-    console.log("update")
     
     payment_term_value = payment_term.filter(":checked").first();
     invoice_amount_unit_value = invoice_amount_unit.filter(":checked").first();
@@ -50,23 +47,28 @@ $(function(){
     
     if(!payment_term_value.val()){
       payment_term_error.addClass("has-error");
-      payment_term_error.html("Please select Payment Terms");
+      payment_term_error.html("Please select payment term.");
     }else{
       payment_term_error.removeClass("has-error");
       payment_term_error.html("");
     }
     
-    if(!invoice_amount_value.val()){
+    var invoice_amount_valid = true;
+    var invoice_amount_val = currencyParser(invoice_amount_value.val());
+    
+    if(!invoice_amount_val){
+      invoice_amount_valid = false;
       invoice_amount_error.addClass("has-error");
-      invoice_amount_error.html("Please enter Invoice Amount");
+      invoice_amount_error.html("Please enter amount.");
     }else{
-      var invoice_amount_val = parseFloat(invoice_amount_value.val());
-      if( invoice_amount_val>1000 ){
+      if( invoice_amount_val>10000 ){
+        invoice_amount_valid = false;
         invoice_amount_error.addClass("has-error");
-        invoice_amount_error.html("Amount should be less than 1000.");
-      }else if( invoice_amount_val<=0 ){
+        invoice_amount_error.html("Amount should be less than 10000.");
+      }else if( invoice_amount_val<0 ){
+        invoice_amount_valid = false;
         invoice_amount_error.addClass("has-error");
-        invoice_amount_error.html("Amount should be greater than 0.");
+        invoice_amount_error.html("Amount should be positive.");
       }else{
         invoice_amount_error.removeClass("has-error");
         invoice_amount_error.html("");
@@ -75,18 +77,17 @@ $(function(){
     
     if(!invoice_amount_unit_value.val()){
       invoice_amount_unit_error.addClass("has-error");
-      invoice_amount_unit_error.html("Please select Amount in Unit");
+      invoice_amount_unit_error.html("Please select amount in.");
     }else{
       invoice_amount_unit_error.removeClass("has-error");
       invoice_amount_unit_error.html("");
     }
     
     
-    if(payment_term_value.val() && invoice_amount_value.val() && invoice_amount_unit_value.val()){
+    if(invoice_amount_valid && payment_term_value.val() && invoice_amount_val && invoice_amount_unit_value.val()){
         var payment_term_val = parseInt(payment_term_value.val());
-        var invoice_amount_val = parseFloat(invoice_amount_value.val());
-        
         var invoice_amount_unit_val = invoice_amount_unit_value.val();
+        
         if(invoice_amount_unit_val === "lacs"){
           invoice_amount_val = invoice_amount_val * 100000;
         }
@@ -95,7 +96,7 @@ $(function(){
         }
         
         var fees_amount_val = invoice_amount_val * 0.001;
-        var cash_amount_val = invoice_amount_val - fees_amount_val;
+        var cash_amount_val = invoice_amount_val * 0.8;
         
         fees_amount.html(formatINR(fees_amount_val.toFixed(2)));
         cash_amount.html(formatINR(cash_amount_val.toFixed(2)));
@@ -135,5 +136,68 @@ $(function(){
   		if (callNow) func.apply(context, args);
   	};
   };
+  
+  
+  function currencyFormatter(value){
+        let rawValue = "" + value;
+        let formattedValue = '';
+        if (rawValue != '' && rawValue != null && !isNaN(rawValue) && isFinite(rawValue)) {
+
+            const parts = rawValue.split(".")
+
+            if (parts.length >= 1) {
+                const digits = parts[0].split("").reverse()
+                const formattedDigits = [];
+                for (let i = 0; i < digits.length; i++) {
+                    if (i == 3) {
+                        formattedDigits.push(",");
+                    } else if (i > 3 && i % 2 === 1) {
+                        formattedDigits.push(",");
+                    }
+                    formattedDigits.push(digits[i]);
+                }
+                formattedDigits.reverse();
+                formattedValue = formattedDigits.join("")
+            }
+            if (parts.length >= 2) {
+                formattedValue += "." + parts[1]
+            }
+
+            return '₹ '+formattedValue;
+        }
+        return formattedValue;
+    }
+    function currencyParser(formattedValue){
+
+        let processedValue = formattedValue;
+
+        if (formattedValue && typeof formattedValue === "string") {
+            formattedValue = formattedValue.replace("₹ ", '');
+
+            if(formattedValue !== "0"){
+              formattedValue = formattedValue.replace(/^0+/, '');
+            }
+            
+            const parts = formattedValue.split(".");
+            const hasDecimal = /\./.test(formattedValue);
+
+            if (parts.length == 1) {
+                processedValue = formattedValue.replace(/\D+/g, "") + (hasDecimal ? "." : "");
+            }
+            else if (parts.length > 1) {
+                const abscissa = parts[0].replace(/\D+/g, "");
+                const mantissa = parts[1].replace(/\D+/g, "");
+                processedValue = abscissa + "." + mantissa.substr(0, Math.min(2, mantissa.length));
+            }
+
+        }
+        const matches = /^\d+(\.\d*)?/.exec(processedValue);
+        if (matches && matches.length > 0) {
+            processedValue = matches[0]
+        } else {
+            processedValue = '';
+        }
+        return processedValue;
+    }
   
 });
