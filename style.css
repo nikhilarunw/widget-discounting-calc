@@ -1,7 +1,7 @@
 #invoice-calculator-widget{
     font-family: 'Open Sans', sans-serif;
-    background-color: #1B2333;
-    color: #F3F9FA;
+    background-color: transparent;
+    color: black;
     padding: 64px 64px;
     border-radius: 2px;
     width: 420px;
@@ -17,7 +17,7 @@
 }
 #invoice-calculator-widget .action-link{
   text-decoration: none;
-  background: orange;
+  background: #f58634;
   margin: 20px auto;
   width: 100px;
   height: 1.2em;
@@ -25,6 +25,7 @@
   text-align: center;
   display: block;
   line-height: 1.2em;
+  color: white;
   
 }
 
@@ -55,9 +56,9 @@
   font-size: 1.2em;
   line-height: 1em;
   border: none;
-  color: #F3F9FA;
+  color: black;
   background-color: transparent;
-  border-bottom: 2px solid orange;
+  border-bottom: 2px solid #f58634;
 }
 #invoice-calculator-widget .amount:focus { outline: none; }
 
@@ -66,8 +67,7 @@
   margin: 4px 0px;
   font-size: 1.2em;
   line-height: 1em;
-  color: ;
-  color: #F3F9FA;
+  color: #f58634;
   background-color: transparent;
 }
 #invoice-calculator-widget [name='payment_term']{
@@ -85,13 +85,13 @@
 }
 
 #invoice-calculator-widget .payment_term_control .payment_term_checkbox:hover{
-  border: 2px solid orange;
+  border: 2px solid #f58634;
   border-right: none;
   border-left: none;
   border-top: none;
 }
 #invoice-calculator-widget .payment_term_control input:checked + .payment_term_checkbox{
-  border: 2px solid orange;
+  border: 2px solid #f58634;
   border-right: none;
   border-left: none;
   border-top: none;
@@ -112,13 +112,13 @@
 }
 
 #invoice-calculator-widget .invoice_amount_unit_control .invoice_amount_unit_checkbox:hover{
-  border: 2px solid orange;
+  border: 2px solid #f58634;
   border-right: none;
   border-left: none;
   border-top: none;
 }
 #invoice-calculator-widget .invoice_amount_unit_control input:checked + .invoice_amount_unit_checkbox{
-  border: 2px solid orange;
+  border: 2px solid #f58634;
   border-right: none;
   border-left: none;
   border-top: none;
