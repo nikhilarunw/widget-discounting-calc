@@ -15,6 +15,9 @@
 #invoice-calculator-widget .text-center{
   text-align: center;
 }
+#invoice-calculator-widget .text-right{
+  text-align: right;
+}
 #invoice-calculator-widget .action-link{
   text-decoration: none;
   background: #f58634;
@@ -47,7 +50,7 @@
 }
 #invoice-calculator-widget label{
   display: inline-block;
-  font-size: 0.8em;
+  font-size: 0.9em;
   line-height: 1.2em;
 }
 #invoice-calculator-widget .amount{
@@ -62,6 +65,7 @@
 }
 #invoice-calculator-widget .amount:focus { outline: none; }
 
+#invoice-calculator-widget [name='invoice_amount_label'],
 #invoice-calculator-widget [name='fees_amount'],
 #invoice-calculator-widget [name='cash_amount']{
   margin: 4px 0px;
@@ -79,51 +83,76 @@
 
 #invoice-calculator-widget .payment_term_control .payment_term_checkbox{
   font-size: 1.2em;
-  margin-right: 24px;
   cursor: pointer;
-  padding: 4px 0px;
+  padding: 8px;
+  border: 2px solid #d3d3d3;
 }
 
 #invoice-calculator-widget .payment_term_control .payment_term_checkbox:hover{
   border: 2px solid #f58634;
-  border-right: none;
-  border-left: none;
-  border-top: none;
 }
 #invoice-calculator-widget .payment_term_control input:checked + .payment_term_checkbox{
   border: 2px solid #f58634;
-  border-right: none;
-  border-left: none;
-  border-top: none;
 }
 
-
-#invoice-calculator-widget [name='invoice_amount_unit']{
-  display: none;
+#invoice_amount_above_a_crore [name='invoice_amount_above_a_crore']{
+  width: 30px;
+  height: 30px;
 }
-#invoice-calculator-widget .invoice_amount_unit_control{
+#invoice-calculator-widget .invoice_amount_above_a_crore_control{
   text-align: right;
 }
-#invoice-calculator-widget .invoice_amount_unit_control .invoice_amount_unit_checkbox{
+#invoice-calculator-widget .invoice_amount_above_a_crore_control .invoice_amount_above_a_crore_checkbox{
   font-size: 1.2em;
   cursor: pointer;
-  margin-left: 24px;
+  margin-left: 8px;
   padding: 4px 0px;
-}
-
-#invoice-calculator-widget .invoice_amount_unit_control .invoice_amount_unit_checkbox:hover{
-  border: 2px solid #f58634;
-  border-right: none;
-  border-left: none;
-  border-top: none;
-}
-#invoice-calculator-widget .invoice_amount_unit_control input:checked + .invoice_amount_unit_checkbox{
-  border: 2px solid #f58634;
-  border-right: none;
-  border-left: none;
-  border-top: none;
 }
 
 #invoice-calculator-widget .label{
   margin-bottom: 8px;
+}
+
+
+#invoice-calculator-widget .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+#invoice-calculator-widget .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #f58634;
+    cursor: pointer;
+}
+
+#invoice-calculator-widget .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #f58634;
+    cursor: pointer;
+}
+
+#invoice-calculator-widget input[disabled]{
+  display: none
+}
+
+#invoice-calculator-widget .payment_term_option{
+  flex: 1;
+  text-align: center;
+}
+#invoice-calculator-widget .payment_term_option_container{
+  display: flex;
+  flex-direction: row;
 }
