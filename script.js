@@ -8,6 +8,7 @@ $(function(){
   var invoice_amount_control = widget.find(".invoice_amount_control").first();
   var invoice_amount_range = widget.find("[name='invoice_amount_range']").first();
   var invoice_amount_in_crore_checkbox = widget.find("[name='invoice_amount_above_a_crore']").first();
+  var invoice_amount_above_a_crore_control = widget.find(".invoice_amount_above_a_crore_control").first();
   var fees_amount_control = widget.find(".fees_amount_control").first();
   var cash_amount_control = widget.find(".cash_amount_control").first();
 
@@ -60,9 +61,14 @@ $(function(){
       invoice_amount_range_control.show();
       invoice_amount_value = Number(currencyParser(invoice_amount_range.val())) * 100000;
       invoice_amount.val(formatINR(invoice_amount_value));
+      if(invoice_amount_value == 10000000){
+        invoice_amount_above_a_crore_control.show()
+      }else{
+        invoice_amount_above_a_crore_control.hide()
+      }
     }
 
-    invoice_amount_label.html(formatINR(invoice_amount_value/100000) + " Lakhs");
+    invoice_amount_label.html(formatINR((invoice_amount_value < 10000000? invoice_amount_value / 100000 : invoice_amount_value/10000000)) + (invoice_amount_value < 10000000? " Lakhs" : " Crore"));
 
 
     if(!payment_term_value.val()){
@@ -81,10 +87,10 @@ $(function(){
       invoice_amount_error.addClass("has-error");
       invoice_amount_error.html("Please enter amount.");
     }else{
-      if( invoice_amount_val>1000000000000 ){
+      if( invoice_amount_val>100000000 ){
         invoice_amount_valid = false;
         invoice_amount_error.addClass("has-error");
-        invoice_amount_error.html("Amount should be less than 10000.");
+        invoice_amount_error.html("Amount should be less than 10 Crores.");
       }else if( invoice_amount_val<0 ){
         invoice_amount_valid = false;
         invoice_amount_error.addClass("has-error");
@@ -101,11 +107,11 @@ $(function(){
         var fees_amount_val = invoice_amount_val * 0.001;
         var cash_amount_val = invoice_amount_val * 0.8;
         
-        fees_amount.html(formatINR(fees_amount_val.toFixed(0)));
+        fees_amount.html("24-48 Hours");
         cash_amount.html(formatINR(cash_amount_val.toFixed(0)));
       
     }else{
-      fees_amount.html('₹ 0');
+      fees_amount.html('');
       cash_amount.html('₹ 0');
     }
   }

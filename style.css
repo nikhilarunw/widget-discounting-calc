@@ -77,7 +77,7 @@
 #invoice-calculator-widget [name='payment_term']{
   display: none;
 }
-#invoice-calculator-widget .cash_amount_control{
+#invoice-calculator-widget .fees_amount_control{
   text-align: right;
 }
 
@@ -103,10 +103,11 @@
   text-align: right;
 }
 #invoice-calculator-widget .invoice_amount_above_a_crore_control .invoice_amount_above_a_crore_checkbox{
-  font-size: 1.2em;
+  font-size: 0.9em;
   cursor: pointer;
   margin-left: 8px;
   padding: 4px 0px;
+  margin-top: 8px;
 }
 
 #invoice-calculator-widget .label{

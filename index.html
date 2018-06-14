@@ -34,17 +34,17 @@
           <div class="error"></div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="margin-bottom: 0px">
         <div class="col-xs-12 invoice_amount_range_control">
           <div style="display:flex">
             <label class="label" style="flex:1">Invoice Amount</label>
             <label class="label text-right" name="invoice_amount_label" style="flex:1">3</label>
           </div>
-          <div><input class="slider invoice_amount_range" name="invoice_amount_range" type="range" value="3" min="3" max="50"/></div>
+          <div><input class="slider invoice_amount_range" name="invoice_amount_range" type="range" value="3" min="3" max="100"/></div>
           <div class="error"></div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="margin-top: -10px">
         <div class="col-xs-6">
           <div class="invoice_amount_control">
 <label class="label">Invoice Amount</label>
@@ -52,24 +52,26 @@
           <div class="error"></div>
           </div>
         </div>
-        <div class="col-xs-6 invoice_amount_above_a_crore_control">
-          <label class="label"></label>
-          <div>
-            <input id="invoice_amount_above_a_crore" name="invoice_amount_above_a_crore" type="checkbox" value="yes"/>
-            <label class="invoice_amount_above_a_crore_checkbox" for="invoice_amount_above_a_crore">Above 1 Crore</label>
+        <div class="col-xs-6">
+          <div class="invoice_amount_above_a_crore_control">
+            <label class="label"></label>
+            <div>
+              <input id="invoice_amount_above_a_crore" name="invoice_amount_above_a_crore" type="checkbox" value="yes"/>
+              <label class="invoice_amount_above_a_crore_checkbox" for="invoice_amount_above_a_crore">Above 1 Crore</label>
+            </div>
+            <div class="error"></div>
           </div>
-          <div class="error"></div>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-6 fees_amount_control">
-          <label class="label">Fees*</label>
-          <div name="fees_amount"></div>
-          <div class="error"></div>
-        </div>
         <div class="col-xs-6 cash_amount_control">
           <label class="label">Cash we advance*</label>
           <div name="cash_amount"></div>
+          <div class="error"></div>
+        </div>
+        <div class="col-xs-6 fees_amount_control">
+          <label class="label">Processing Time*</label>
+          <div name="fees_amount"></div>
           <div class="error"></div>
         </div>
       </div>
